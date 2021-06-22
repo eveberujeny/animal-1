@@ -1,0 +1,37 @@
+<%= render "shared/second-header"%>
+
+<div class='search-animal-content'%>
+  <div class='feature-contents'> 
+    <h2 class='title'>
+      検索結果
+    </h2>
+    <div class='feature-title'>
+    <% if @results.length !=0 %>
+    <% @results.each do |result| %>
+    <%= link_to animal_path(result.id) do %>
+    <ul class='feature-lists'>
+      <li class='list'>
+        <% if result.image.content_type.include?("image/") %>
+        <%= image_tag result.image, class:"list-pict" %>
+        <% elsif result.image.content_type.include?("video/") %>
+        <%= video_tag url_for(result.image), controls: true, class:"list-pict" %>
+        <% end %>
+        <h3 class='feature-list-text'>
+          <%= result.animal_name %>
+        </h3>
+        <p class='feature-list-description'>
+          <%= result.animal_type.name %>
+        </p>
+        <p class='feature-list-description'>
+          <%= result.animal_pedigree %>
+        </p>
+    </ul>
+    <% end %>
+    <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
+
+  <%= render "shared/second-footer"%>
+  <%= link_to 'トップページへ戻る', root_path %>

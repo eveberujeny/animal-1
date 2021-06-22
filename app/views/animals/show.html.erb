@@ -1,0 +1,103 @@
+<%= render "shared/second-header" %>
+
+ <%# 商品の概要 %>
+<div class= animals>
+  <div class="item-show">
+    <div class="item-box">
+      <h2 class="name">
+        <%= @animal.animal_name %>
+      </h2>
+      <div class="item-img-content">
+        <% if @animal.image.content_type.include?('image/') %>
+          <%= image_tag @animal.image,class:"item-box-img" %> 
+        <% elsif @animal.image.content_type.include?('video/') %>
+          <%= video_tag url_for(@animal.image), controls: true %>
+        <% end %>
+      </div>
+
+
+      <div class="detail-tables">          
+         <div class="detail-items">飼い主さん<p><%= @animal.user.nickname %></p></div>            
+         <div class="detail-items-1">ペットの名前<p><%= @animal.animal_name %></p></div>                  
+         <div class="detail-items-2">ペットの種類<p><%= @animal.animal_type.name %></p></div>
+         <div class="detail-items-3">ペットの品種<p><%= @animal.animal_pedigree %></p></div>           
+         <div class="detail-items-4">ペットの年齢<p><%= @animal.birthday %></p></div>                
+      </div>
+
+      <div class="detail-items-5">ペットの紹介</div>
+            <div class="detail-items-5-1"><%= @animal.introduction %></div>
+
+             <div id="like-<%= @animal.id %>">   
+    <%= render 'likes/like', { animal: @animal} %>
+    </div>
+
+      </div> 
+
+
+    
+
+    <div class="comment-box">
+    <%= image_tag "image100.png", class:"comment-image"%>
+      <form>
+        <textarea class="comment-text"></textarea>
+       
+        <button type="submit" class="comment-btn">
+          <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+          <span>コメントする<span>
+        </button>
+      </form>
+      <%= image_tag "image0-2.jpeg", class:"comment-image"%>
+    </div>
+
+  <div class='animal-red-btn'>
+    <% if current_user.id == @animal.user_id %>
+      <%= link_to "ペット情報の編集", edit_animal_path(@animal.id), method: :get, class: "item-red-btn" %>
+      <p class="or-text">or</p>
+      <%= link_to "削除", animal_path(@animal.id), method: :delete, class:"item-destroy" %>
+    <% end %>
+  </div>
+      <%= link_to "ツイート一覧画面に進む", "#" ,class:"item-red-btn-1"%>     
+</div>  
+
+      
+
+<% unless @tweet.blank? %>
+<p class="animal-tweet-name">
+<% @tweet.last(1).each do |tweet| %>
+      <%= tweet.animal.animal_name %><p>のツイート一覧</p>
+      </p>
+      <% end %>
+  <div class='feature-contents'>
+      <div class='feature-title'>
+      <% @tweet.each do |tweet| %>
+      <%= link_to animal_tweet_path(tweet.id) do %>
+      <ul class='feature-lists'>
+        <li class='list'>
+        <% if tweet.food_image.content_type.include?('image/') %>
+          <%= image_tag tweet.food_image, class:"list-pict" %>
+        <% elsif tweet.food_image.content_type.include?('video/') %>
+          <%= video_tag url_for(tweet.food_image), controls: true, class: 'list-pict' %>
+        <% end %>
+          <h3 class='feature-list-text'>
+            <%= tweet.animal.animal_name %>
+          </h3>
+          <p class='feature-list-description'>
+            <%= tweet.title %>
+          </p>
+      </ul>
+      <% end %>
+      <% end %>    
+      </div>
+<% end %>
+
+      <% if current_user.id == @animal.user_id %>
+        <%= link_to animal_tweets_path(@animal.id), class: 'purchase-btn' do %>
+          <span class='purchase-btn-text'>投稿する</span>
+        <% end %>
+    <% end %>
+
+  </div>
+
+  
+
+<%= render "shared/second-footer" %>

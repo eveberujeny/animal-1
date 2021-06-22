@@ -1,0 +1,57 @@
+<%= render 'shared/second-header'%>
+
+<div class="items-sell-contents">
+  <header class="items-sell-header">
+
+  </header>
+  <div class="items-sell-main">
+    <h2 class="items-sell-title">ペットのツイート</h2>
+    <%= form_with model: @tweets, url: animal_tweets_path, local: true do |f| %>
+
+    
+    <%= render 'shared/error_messages', model: f.object %>
+   
+
+    
+    <div class="img-upload">
+      <div class="weight-bold-text">
+        ペットの画像
+        <span class="indispensable">必須</span>
+      </div>
+      <div class="click-upload">
+        <p>
+          クリックしてファイルをアップロード
+        </p>
+        <%= f.file_field :food_image, id:"item-image" %>
+        <div id="image-list"></div>
+      </div>
+    </div>
+    
+    <div class="new-items">
+      <div class="weight-bold-text">
+        ツイートのタイトル
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_area :title, class:"items-text", id:"item-name", placeholder:"（例）チロル", maxlength:"40" %>
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          ツイートの内容
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :text, class:"items-text", id:"item-info", placeholder:"ペットの紹介（1,000文字まで）（例）我が家の可愛いチロルです！毎日毎日癒されています。遊ぶことが大好きで、仕事から帰ると「遊んでくれ〜！」とやってきます。大変な部分もありますが、とても楽しい毎日です。" ,rows:"7" ,maxlength:"1000" %>
+      </div>
+    </div>
+    
+     <%= link_to image_tag"image6-2.png", class: "animal-image1"%>
+
+    
+    <div class="sell-btn-contents">
+      <%= f.submit "投稿する" ,class:"sell-btn" %>
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    </div>
+   
+  </div>
+  <% end %>
+</div>
+
+<%= render 'shared/second-footer'%>

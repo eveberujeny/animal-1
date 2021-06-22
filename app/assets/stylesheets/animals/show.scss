@@ -1,0 +1,384 @@
+
+
+
+.item-show {
+  background-color: #e48c7c;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5vh 0;
+  background-image: image-url('2391255.jpg');
+}
+
+.item-box {
+  border-radius: 50px;
+  background-color: #eec0a9;
+  width: 70vw;
+  min-width: 1200px;
+  padding: 10vh 15vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: image-url('2503841.jpg');
+  margin-bottom: 30px;
+}
+
+.item-box>.name {
+  text-align: center;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.item-box-img {
+  border-radius: 50%;
+  height: 100vh;
+  width: 60vw;
+  min-height: 500px;
+  background-color: rgb(250, 245, 245);
+  object-fit: contain;
+  margin: 20px 0;
+}
+
+
+
+
+.detail-table {
+  margin-bottom: 30px;
+  width: 50%;
+  
+}
+
+.detail-item {
+  border-radius: 50px;
+  width: 20%;
+  background-color: rgb(223, 173, 173);
+  font-size: 14px;
+  text-align: center;
+  
+}
+
+.detail-value {
+  border-radius: 50px;
+  width: 80%;
+  padding: 20px;
+  background-color: rgb(243, 176, 176);
+  font-size: 14px;
+
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  
+}
+
+.favorite-btn {
+  border-radius: 40px;
+  width: 15vw;
+  min-width: 200px;
+  color: rgb(249, 75, 0);
+  border: 2px solid #ffb340;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+  background-color: rgb(223, 168, 168);
+}
+
+.favorite-star-icon {
+  margin-right: 5px;
+}
+
+.report-btn {
+  border-radius: 40px;
+  width: 15vw;
+  min-width: 200px;
+  background-color: rgb(223, 168, 168);
+  padding: 1vh 0;
+  color: black;
+  border: 2px solid #2d2d2d;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.report-flag-icon {
+  margin-right: 5px;
+}
+
+
+/* /商品の概要 */
+
+.comment-box {
+  border-radius: 30px;
+  width: 80vw;
+  background-color: #fff;
+  margin: 5vh 0;
+  text-align: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.comment-image{
+  width: 20%;
+}
+
+.comment-text {
+  border-radius: 30px;
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: solid 2px #dedede;
+  resize: none;
+}
+
+.comment-warn {
+  padding: 10px;
+  font-size: 14px;
+  margin: 10px 0px;
+  text-align: left;
+}
+
+.comment-btn {
+  line-height: 48px;
+  background-color: #83ce3c;
+  border: 1px solid #3CCACE;
+  color: #fff;
+  width: 50%;
+  min-width: 150px;
+  font-size: 18px;
+  border-radius: 100px;
+  margin-bottom: 2vh;
+}
+
+.comment-flag {
+  display: flex;
+  justify-content: center;
+}
+
+.comment-flag-icon {
+  margin: 10px 5px 0 0;
+}
+
+.message-text{
+  border: rgb(102, 255, 0) solid 3px;
+  border-radius: 10px;
+}
+
+
+
+
+
+/*編集ボタン、削除ボタン*/
+
+
+.animal-red-btn{
+  display: flex;
+}
+
+.item-red-btn {
+  border-radius: 30px;
+  text-align: center;
+  background-color: #e60f73;
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFF;
+  margin: 20px 0px;
+  padding: 5vh 5vw;
+}
+
+.item-red-btn-1 {
+  border-radius: 30px;
+  text-align: center;
+  background-color: #e60fdb;
+  font-size: 24px;
+  font-weight: bold;
+  color: #FFF;
+  margin: 20px 0px;
+  padding: 5vh 5vw;
+}
+
+.or-text {
+  font-size: 20px;
+  margin: 20px 0px;
+  text-align: center;
+  padding: 5vh 2vw;
+}
+
+.item-destroy {
+  border-radius: 30px;
+  background-color: rgb(240, 231, 231);
+  text-align: center;
+  font-size: 24px;
+  color: black;
+  margin: 20px 0px;
+  padding: 5vh 10vw;
+}
+
+
+.iine_button{
+  background: linear-gradient(to right, #feb400, #FFE300);
+  line-height: 42px;
+  color: #6d3701;
+  font-size: 14px;
+  display: inline-block;
+  padding: 0 18px;
+  border-radius: 100px;
+  font-weight: bold;
+  transition: all 0.3s ease 0s;
+}
+
+.iine_button:hover{
+  transform: scale(1.1, 1.1);
+}
+
+
+.detail-tables {
+  margin-bottom: 30px;
+  width: 100%;
+  display: flex;
+}
+
+.detail-items{
+  background-color: cornflowerblue;
+  width: 200px;
+  height: 150px;
+  padding: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  transition: all 0.3s ease 0s;
+}
+
+.detail-items:hover{
+  transform: scale(1.1, 1.1);
+}
+
+.detail-items-1{
+  background-color: rgb(143, 237, 100);
+  width: 200px;
+  height: 150px;
+  padding: 30px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 50px;
+  font-size: 15px;
+  transition: all 0.3s ease 0s;
+}
+
+.detail-items-1:hover{
+  transform: scale(1.1, 1.1);
+}
+
+.detail-items-2{
+  background-color: rgb(216, 226, 69);
+  width: 200px;
+  height: 150px;
+  padding: 30px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 15px;
+  line-height: 50px;
+  transition: all 0.3s ease 0s;
+}  
+
+.detail-items-2:hover{
+  transform: scale(1.1, 1.1);
+}
+
+.detail-items-3{
+  background-color: rgb(182, 100, 237);
+  width: 200px;
+  height: 150px;
+  padding: 30px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 15px;
+  line-height: 50px;
+  transition: all 0.3s ease 0s;
+}
+
+.detail-items-3:hover{
+  transform: scale(1.1, 1.1);
+}
+
+.detail-items-4{
+  background-color: rgb(237, 100, 184);
+  width: 200px;
+  height: 150px;
+  padding: 30px;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 15px;
+  line-height: 50px;
+  transition: all 0.3s ease 0s;
+}
+
+.detail-items-4:hover{
+  transform: scale(1.1, 1.1);
+}
+
+.detail-items-5{
+  background-color: rgb(162, 184, 224);
+  width: 200px;
+  padding: 30px;
+  border-radius: 50%;
+  text-align: center;
+  margin-bottom: 10px;
+  transition: all 0.3s ease 0s;
+}
+
+.detail-items-5:hover{
+  transform: scale(1.1, 1.1);
+}
+
+.detail-items-5-1{
+  background-color: rgb(162, 184, 224);
+  padding: 30px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+  transition: all 0.3s ease 0s;
+}
+
+.detail-items-5-1:hover{
+  transform: scale(1.1, 1.1);
+}
+
+.detail-items-6{
+  background-color: rgb(236, 19, 48);
+  padding: 30px;
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+  transition: all 0.3s ease 0s;
+}
+
+.detail-items-6:hover{
+  transform: scale(1.1, 1.1);
+}
+
+.detail-items-6-1{
+  background-color: rgb(226, 106, 132);
+  padding: 30px;
+  width: 500px;
+  height: auto;
+  border-radius: 10px;
+  text-align: center;
+  margin-bottom: 30px;
+  transition: all 0.3s ease 0s;
+}
+
+.detail-items-6-1:hover{
+  transform: scale(1.1, 1.1);
+}
+
+.animal-tweet-name{
+  
+}

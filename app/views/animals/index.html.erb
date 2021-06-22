@@ -1,45 +1,90 @@
-<%= render "shared/header" %>
+
 <div class='main'>
 
-  <%# 画面上部の「人生を変えるフリマアプリ」帯部分 %>
   <div class='title-contents'>
-  <h2 class='service-title'>
-      ようこそペット自慢広場へ！！！
-    </h2>
-   <%= link_to image_tag("image6のコピー.png", class:"animal-image"), "#" %>
-  </div>
-  <%# /画面上部の「人生を変えるフリマアプリ」帯部分  %>
+  
 
-  <%# FURIMAが選ばれる3つの理由部分 %>
+  <div class="search-title-content">
+  
+      <div class='navs'>
+        <ul class='lists-lefts'>
+          <% if signed_in? %>
+          <li><%= link_to '登録したペット一覧', users_path, class: "brand-lists" %></li>
+          <li><%= link_to current_user.nickname, "#", class: "user-nicknames" %></li> 
+          <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class: "logouts" %></li> 
+          <% else %>
+          <li><%= link_to 'ログイン', new_user_session_path, class: "logins" %></li>
+          <li><%= link_to '新規登録', new_user_registration_path, class: "sign-ups" %></li>
+          <% end %>
+        </ul>
+      </div>
+
+
+       <div class="search-contents">
+        <%= search_form_for @p, url: animals_search_path, class: 'search-forms' do |f| %>
+          <%= f.label :animal_eq, '[ペットの名前で検索]', class: 'input-boxs'%> 
+          <%= f.collection_select :animal_name_eq, @animal_name, :animal_name, :animal_name, include_blank: '指定なし' %>
+          <button class="search-buttons">
+            <%= image_tag "search.png", class:"search-icons" %>
+          </button>
+        </form>
+        <% end %>
+  
+
+
+        <%= search_form_for @p, url: animals_search_path, class: 'search-forms' do |f| %>
+          <%= f.label :animal_pedigree_eq, '[ペットの品種で検索]', class: 'input-boxs'%> 
+          <%= f.collection_select :animal_pedigree_eq, @animal_pedigree, :animal_pedigree, :animal_pedigree, include_blank: '指定なし' %>
+          <button class="search-buttons">
+            <%= image_tag "search.png", class:"search-icons" %>
+          </button>
+        </form>
+        <% end %>
+      </div>
+
+   </div>
+
+    <h2 class='service-title'>
+      Animal Blog へようこそ！！！！
+    </h2>
+    <p class='service-explain'>
+      誰でも可愛いペットを紹介できる
+    </p>
+    <p class='service-explain'>
+      ペットの繋がりを大切に
+    </p>
+
+  </div>
+  
   <div class='select-reason-contents'>
     <h2 class='title'>
       アニマルブログで使用できるサービスについて
     </h2>
     <ul class='reason-lists'>
       <li class='list'>
-        <%= image_tag "image6のコピー.png", class:"list-pict" %>
+        <%= image_tag "image1-1-1.png", class:"list-animal" %>
         <span class='reason-list-number'>1</span>
         <h3 class='reason-list-text'>
           <span class='reason-list-blue-text'>ペット</span>
-          の自慢
+          の登録
         </h3>
         <p class='reason-list-description'>
-          うちのペットはこんな芸ができます！などなど、いろんな自慢をしよう。
+          ペットの自慢をしよう！まずは、右下のアイコンから、ペットを登録してね
         </p>
       </li>
       <li class='list'>
-        <%= image_tag "image6のコピー.png", class:"list-pict" %>
+        <%= image_tag "image4-1.png", class:"list-animal" %>
         <span class='reason-list-number'>2</span>
         <h3 class='reason-list-text'>
           <span class='reason-list-blue-text'>ペット</span>
-          の語り合い
+          のツイート
         </h3>
         <p class='reason-list-description'>
-          みんなでペットについて語り合う！興味の子がいればメッセージでやり取り可能。
+          みんなでペットについて語り合う！登録した子の詳細ページからツイート投稿できるよ
         </p>
       </li>
       <li class='list'>
-        <%= image_tag "image6のコピー.png", class:"list-pict" %>
+        <%= image_tag "image6-1.png", class:"list-animal" %>
         <span class='reason-list-number'>3</span>
         <h3 class='reason-list-text'>
           <span class='reason-list-blue-text'>ペット</span>
@@ -51,130 +96,69 @@
       </li>
     </ul>
   </div>
-  <%# /FURIMAが選ばれる3つの理由部分 %>
-
-  <%# 画面中央の「会員数日本一位」帯部分 %>
+  
   <div class='ad-contents'>
-     <%= link_to image_tag("image6のコピー.png", class:"animal-image"), "#" %>
+     <%= link_to image_tag("image6-2.png", class:"animal-image"), "#" %>
     <h2 class='ad-title'>
       ペットのツイート一覧
     </h2>
   </div>
-  <%# /画面中央の「会員数日本一位」帯部分 %>
-
-  <%# FURIMAの特徴 %>
+  
   <div class='feature-contents'>
    
     <h2 class='title'>
       みんな可愛いね
     </h2>
-    <%= link_to "#" do %>
+    <div class='feature-title'>
+    <% @tweets.last(7).each do |tweet| %>
+    <%= link_to animal_tweet_path(tweet.id, tweet.animal_id) do %>
     <ul class='feature-lists'>
       <li class='list'>
-        <%= image_tag "image5.png", class:"list-pict" %>
+        <% if tweet.food_image.content_type.include?('image/') %>
+          <%= image_tag tweet.food_image, class:"list-pict" %>
+        <% elsif tweet.food_image.content_type.include?('video/') %>
+          <%= video_tag url_for(tweet.food_image), controls: true, class:"list-pict" %>
+        <% end %>
+          
         <h3 class='feature-list-text'>
-          <%= "ツイートのタイトル" %>
+          <%= tweet.title %>
         </h3>
-        <p class='feature-list-description'>
-          <%= "ツイートの内容" %>
-        </p>
-      </li>
-      <li class='list'>
-        <%= image_tag "image5.png", class:"list-pict" %>
-        <h3 class='feature-list-text'>
-          <%= "ツイートのタイトル" %>
-        </h3>
-        <p class='feature-list-description'>
-          <%= "ツイートの内容" %>
-        </p>
-      </li>
-      <li class='list'>
-        <%= image_tag "image5.png", class:"list-pict" %>
-        <h3 class='feature-list-text'>
-          <%= "ツイートのタイトル" %>
-        </h3>
-        <p class='feature-list-description'>
-          <%= "ツイートの内容" %>
-        </p>
-      </li>
     </ul>
     <% end %>
-  </div>
-  <%# /FURIMAの特徴 %>
-
-
-    <div class='feature-contents'>
-    <%= link_to "#" do %>
-    <ul class='feature-lists'>
-      <li class='list'>
-        <%= image_tag "image5.png", class:"list-pict" %>
-        <h3 class='feature-list-text'>
-          <%= "ツイートのタイトル" %>
-        </h3>
-        <p class='feature-list-description'>
-          <%= "ツイートの内容" %>
-        </p>
-      </li>
-      <li class='list'>
-        <%= image_tag "image5.png", class:"list-pict" %>
-        <h3 class='feature-list-text'>
-          <%= "ツイートのタイトル" %>
-        </h3>
-        <p class='feature-list-description'>
-          <%= "ツイートの内容" %>
-        </p>
-      </li>
-      <li class='list'>
-        <%= image_tag "image5.png", class:"list-pict" %>
-        <h3 class='feature-list-text'>
-          <%= "ツイートのタイトル" %>
-        </h3>
-        <p class='feature-list-description'>
-          <%= "ツイートの内容" %>
-        </p>
-      </li>
-    </ul>
     <% end %>
+    </div>
   </div>
 
+  <div class='animal-contents'>
+    <%= link_to image_tag "image0-4.png", class:"animal-image"%>
+    <h1 class="ad-title">人気のペット一覧</h1>
+  </div>
 
   <div class='feature-contents'>
-    <%= link_to "#" do %>
+    <div class='feature-title'>
+    <% @animals.last(7).each do |animal| %>
+    <%= link_to animal_path(animal.id) do %>
     <ul class='feature-lists'>
       <li class='list'>
-        <%= image_tag "image5.png", class:"list-pict" %>
+        <% if animal.image.content_type.include?('image/')%>
+          <%= image_tag animal.image, class:"list-pict" %>
+        <% elsif animal.image.content_type.include?('video/') %>
+          <%= video_tag url_for(animal.image), controls: true, class:"list-pict" %>
+        <% end %>
         <h3 class='feature-list-text'>
-          <%= "ツイートのタイトル" %>
+          <%= animal.animal_name %>
         </h3>
-        <p class='feature-list-description'>
-          <%= "ツイートの内容" %>
-        </p>
-      </li>
-      <li class='list'>
-        <%= image_tag "image5.png", class:"list-pict" %>
-        <h3 class='feature-list-text'>
-          <%= "ツイートのタイトル" %>
-        </h3>
-        <p class='feature-list-description'>
-          <%= "ツイートの内容" %>
-        </p>
-      </li>
-      <li class='list'>
-        <%= image_tag "image5.png", class:"list-pict" %>
-        <h3 class='feature-list-text'>
-          <%= "ツイートのタイトル" %>
-        </h3>
-        <p class='feature-list-description'>
-          <%= "ツイートの内容" %>
-        </p>
-      </li>
     </ul>
     <% end %>
-  </div>
-
-
-<%= link_to('#', class: 'purchase-btn') do %>
-  <span class='purchase-btn-text'>出品する</span>
-  <%= image_tag 'icon_camera.png' , size: '185x50' ,class: "purchase-btn-icon" %>
+    <% end %>
+    </div>
+  </div> 
+    
+</div>
+ 
+<%= link_to new_animal_path, class: 'purchase-btn' do %>
+  <span class='purchase-btn-text'>登録する</span>
 <% end %>
-<%= render "shared/footer" %>
+
+
+<%= render "shared/second-footer" %>

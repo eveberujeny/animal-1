@@ -1,0 +1,421 @@
+* {
+  box-sizing: border-box;
+}
+a {
+  text-decoration: none;
+}
+
+.main {
+  background-image: image-url('2391255.jpg');
+
+}
+
+/* 画面上部の「人生を変えるフリマアプリ」帯部分 */
+
+.animal-image{
+  height: 500px;
+  width: 1000px;
+  
+}
+.title-contents {
+  background-image: image-url('image3-2.jpeg');
+  width: 100vw;
+  height: 100vh;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position: top center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5vh 5vw;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(230, 50, 110, 0.9);
+}
+
+.service-title {
+  font-size: 7vh;
+  color: rgb(235, 21, 199);
+  margin:auto;
+  margin-top: 70px;
+  text-shadow: 0 0 5px rgba(15, 15, 15, 0.9);
+}
+
+.service-explain {
+  font-size: 2.5vh;
+  line-height: 40px;
+}
+
+.store-btn {
+  display: flex;
+  margin-top: 24px;
+}
+
+.apple-btn {
+  margin-right: 1vw;
+  height: 9vh;
+}
+
+.google-btn {
+  height: 9vh;
+}
+
+/* //画面上部の「人生を変えるフリマアプリ」帯部分 */
+
+/* FURIMAが選ばれる3つの理由部分 */
+.select-reason-contents {
+  padding: 5vh 15vw;
+  text-shadow: 0 0 5px rgba(230, 50, 110, 0.9);
+}
+
+.select-reason-contents>.title {
+  text-align: center;
+  font-size: 3.5vh;
+  font-weight: bold;
+  margin-bottom: 5vh;
+  position: relative;
+}
+
+.select-reason-contents>.title::after {
+  content: '';
+  width: 70px;
+  height: 4px;
+  background-color: red;
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+}
+
+.reason-lists {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.reason-lists>.list {
+  width: 33vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.list-animal{
+  margin: 20px;
+  width: 120%;
+  transition: all 1s linear 0s;
+  cursor: pointer;
+}
+
+.list-animal:hover{
+  transform: rotateY(360deg);
+}
+
+
+.reason-list-number {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60px;
+  height: 60px;
+  font-size: 30px;
+  text-align: center;
+  line-height: 60px;
+  background-color: red;
+  color: rgb(22, 20, 20);
+}
+
+.reason-list-text {
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 50px;
+}
+
+.reason-list-blue-text {
+  color: red;
+}
+
+.reason-list-description {
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+/* //FURIMAが選ばれる3つの理由部分 */
+
+
+/* 画面中央の「会員数日本一位」帯部分*/
+.ad-contents {
+  width: 100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 5vh 15vw;
+  color: #fff;
+  text-shadow: 0 0 5px rgba(24, 22, 22, 0.9);
+}
+
+.ad-title {
+  font-size: 5vh;
+  margin-bottom: 2vh;
+  margin: auto;
+  color: magenta;
+  margin-top: 15px;
+}
+
+/* //画面中央の「会員数日本一位」帯部分 */
+
+.animal-contents{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 5vh 15vw;
+}
+
+
+
+
+
+
+/* ヘッダー部分*/
+
+.feature-title {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap-reverse;
+  align-items: flex-end;
+  text-shadow: 0 0 5px rgba(17, 16, 16, 0.9);
+  background-color:  #dbaeae;
+  background-image: image-url('2391255.jpg');
+}
+
+
+
+.feature-contents>.title {
+  text-align: center;
+  font-size: 3.5vh;
+  font-weight: bold;
+  margin-bottom: 5vh;
+  position: relative; 
+  
+}
+
+.feature-contents>.title::after {
+  content: '';
+  width: 70px;
+  height: 4px;
+  background-color: rgb(255, 60, 0);
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  
+  
+}
+
+.feature-lists {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 10px;
+  margin-bottom: 30px;
+  background-color: rgb(239, 245, 239);
+  height: 550px;
+  width: 330px;
+  text-shadow: 0 0 5px rgba(230, 50, 110, 0.9);
+  border-radius: 30px;
+  transition: all 0.3s ease 0s;
+}
+
+.feature-lists:hover{
+  transform: scale(1.1, 1.1);
+}
+
+.feature-lists>.list {
+  width: 33vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding:5%;
+  
+}
+
+.list-pict {
+  margin-left: 30%;
+  height: 50vh;
+  width: 40vh;
+  
+}
+
+
+.feature-list-text {
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 50px;
+  margin-left: 30%;
+  text-align: center;
+  color: #333333;
+  width: 300px;
+ 
+}
+
+.feature-list-description {
+  font-size: 18px;
+  margin-top: 10px;
+  margin-left: 30%;
+  color: #333333;
+  text-align: center;
+}
+
+.animal-contents{
+  padding-left: 200px;
+}
+
+
+
+
+
+
+//検索//
+
+
+
+.search-title-content{
+  display: flex;
+  
+}
+
+.search-contents{  
+  margin-left: 5%;
+  display: block;
+  
+}
+
+
+.search-forms {
+  width: 30vw;
+  height: 5vh;
+  display: flex;
+  margin-bottom: 5px;
+  margin-left: 20vw;
+  padding-left: 50px;
+  
+}
+
+.search-forms>.input-boxs {
+  width: 100%;
+  height: 5vh;
+  padding-left: 10px;
+  margin-top: 5px;
+  color: #333333;
+  
+}
+
+.search-buttons {
+  width: 5vh;
+  border: 0;
+  cursor: pointer;
+  background-color: #ce3c5c;
+  padding: 8px;
+  
+}
+
+.search-icons {
+  width: 100%;
+}
+
+.navs {
+  font-size: 20px;
+  width: 40vw;
+  padding: 1vh 0;
+  display: block;
+}
+
+.lists-lefts {
+  display: flex;
+}
+
+.category-lists {
+  text-decoration: none;
+  
+  color: #333333;
+  
+}
+
+.brand-lists {
+  text-decoration: none;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 10px;
+}
+
+.brand-lists:hover{
+  background: red;
+  border-radius: 20px;
+}
+
+
+
+.user-nicknames {
+  text-decoration: none;
+  margin: 0vw 3vw;
+  color: #333333;
+  font-weight: bold;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.user-nicknames:hover{
+  background: red;
+  border-radius: 20px;
+}
+
+
+.logouts {
+  text-decoration: none;
+  color: #333333;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 10px;
+}
+
+.logouts:hover{
+  background: red;
+  border-radius: 20px;
+}
+
+.logins {
+  text-decoration: none;
+  line-height: 32px;
+  margin: 0vw 3vw;
+  color: #333333;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logins:hover{
+  background: red;
+  border-radius: 20px;
+}
+
+.sign-ups {
+  text-decoration: none;
+  color: #333333;
+  padding: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.sign-ups:hover{
+  background: red;
+  border-radius: 20px;
+}
+

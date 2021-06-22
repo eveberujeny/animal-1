@@ -1,0 +1,93 @@
+<%= render 'shared/second-header'%>
+
+<div class="items-sell-contents">
+  <header class="items-sell-header">
+
+  </header>
+  <div class="items-sell-main">
+    <h2 class="items-sell-title">ペットの情報を記入してね</h2>
+    <%= form_with model: @animal, local: true do |f| %>
+
+    <%= render 'shared/error_messages', model: f.object %>
+    
+    <div class="img-upload">
+      <div class="weight-bold-text">
+        ペットの画像・動画
+        <span class="indispensable">必須</span>
+      </div>
+      <div class="click-upload">
+        <p>
+          可愛いペットの写真を選んでね
+        </p>
+        <%= f.file_field :image, id:"item-image" %>
+        <div id="image-list"></div>
+      </div>
+    </div>
+   
+    <div class="new-items">
+      <div class="weight-bold-text">
+        ペットの名前
+        <span class="indispensable">必須</span>
+      </div>
+      <%= f.text_area :animal_name, class:"items-text", id:"item-name", placeholder:"（例）チロル", maxlength:"40" %>
+      <div class="items-explain">
+        <div class="weight-bold-text">
+          ペットの紹介
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :introduction, class:"items-text", id:"item-info", placeholder:"ペットの紹介（1,000文字まで）（例）我が家の可愛いチロルです！毎日毎日癒されています。遊ぶことが大好きで、仕事から帰ると「遊んでくれ〜！」とやってきます。大変な部分もありますが、とても楽しい毎日です。" ,rows:"7" ,maxlength:"1000" %>
+      </div>
+    </div>
+
+    <div class="items-detail">
+      <div class="form">
+        <div class="weight-bold-text">
+          ペットの種類
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:animal_type_id, AnimalType.all, :id, :name, {}, {class:"select-box", id:"item-category"}) %>
+        <div class="weight-bold-text">
+          ペットの品種
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :animal_pedigree, class:"items-text", id:"item-sales-status", placeholder:"（例）トイプードルなど" %>
+      </div>
+      <%= link_to image_tag"image0-2.jpeg", class: "animal-image1"%>
+    </div>
+    
+    <div class="items-details">
+      
+      <div class="forms">
+        <div class="weight-bold-texts">
+          ペットの誕生日
+          <span class="indispensable">必須</span>
+        </div>
+        <%= raw sprintf(
+            f.date_select(
+              :birthday,
+              class:'select-box',
+              id:"item-shipping-fee-status",
+              use_month_numbers: true,
+              prompt:'--',
+              start_year: 1950,
+              end_year: (Time.now.year),
+              date_separator: '%s'),
+              "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+             
+      </div>
+    </div>
+    
+     
+
+   
+    <div class="sell-btn-contents">
+      <%= f.submit "登録する" ,class:"sell-btn" %>
+      <%=link_to 'もどる', root_path, class:"back-btn" %>
+    </div>
+    
+  </div>
+  <% end %>
+</div>
+
+<%= render 'shared/second-footer'%>
+  

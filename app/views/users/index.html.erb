@@ -1,0 +1,27 @@
+<%= render "shared/second-header"%>
+
+
+<div class='user-search-content'>
+  <div class='feature-contents'>
+    <div class='feature-title'>
+    <% @animals.each do |animal| %>
+    <%= link_to animal_path(animal.id) do %>
+    <ul class='feature-lists'>
+      <li class='list'>
+      <% if animal.image.content_type.include?("image/") %>
+        <%= image_tag animal.image, class:"list-pict" %>
+      <% elsif animal.image.content_type.include?("video/") %>
+        <%= video_tag url_for(animal.image), controls: true, class: "list-pict" %>
+      <% end %>
+        <h3 class='feature-list-text'>
+          <%= animal.animal_name %>
+        </h3>
+    </ul>
+    <% end %>
+    <% end %>
+    </div>
+  </div>
+</div>
+  
+
+<%= render "shared/second-footer" %>

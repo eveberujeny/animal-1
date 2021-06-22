@@ -1,0 +1,14 @@
+<%if user_signed_in? %>
+  <% if Like.find_by(user_id: current_user.id, animal_id: animal.id) %>
+    <%=link_to animal_like_path(animal, animal.likes), {method: "delete", remote: true, class: "likes-count"} do %>
+   <div class = "iine_button">❤️<%= animal.likes.count %></div>
+    
+  <% end %>
+  <% else %>
+   <%=link_to animal_likes_path(animal), {method: "post", remote: true, class: "likes-count"} do %>
+  <div class = "iine_button">♡️<%= animal.likes.count %>
+     <% end %>
+  <% end %>
+  <% else %>
+    <%= animal.likes.count %>
+<% end %>

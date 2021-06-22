@@ -1,0 +1,75 @@
+<%= render "shared/second-header" %>
+
+
+<div class= animals>
+  <div class="item-show">
+    <div class="item-box">
+    
+      <h2 class="name">
+        <%= @tweet.animal.animal_name %>
+      </h2>
+
+      <div class="item-img-content">
+        <% if @tweet.food_image.content_type.include?('image/') %>
+          <%= image_tag @tweet.food_image, class:"item-box-img" %>
+        <% elsif @tweet.food_image.content_type.include?('video/') %>
+          <%= video_tag url_for(@tweet.food_image),controls: true %> 
+        <% end %>
+      </div>
+
+      <div class="detail-tables">
+      
+          
+            <div class="detail-items">飼い主さん<p><%= @tweet.user.nickname %></p></div>
+            
+            <div class="detail-items-1">ペットの名前<p><%= @tweet.animal.animal_name %></p></div>
+                   
+            <div class="detail-items-2">ペットの種類<p><%= @tweet.animal.animal_type.name %></p></div>
+
+            <div class="detail-items-3">ペットの品種<p><%= @tweet.animal.animal_pedigree %></p></div>
+             
+            <div class="detail-items-4">ペットの年齢<p><%= @tweet.animal.birthday %></p></div>
+                 
+      </div>
+
+
+      <h1>タイトル</h1>
+          <div class="detail-items-6"><%= @tweet.title %></div>
+          <h1>ツイートの内容<h1>
+         <div class="detail-items-6-1"><%= @tweet.text %></div>
+                      
+    </div>
+
+
+    <div class="comment-box">
+    
+      <%= image_tag "image100.png", class:"comment-image"%>
+      
+      <%= form_with model: @message, url: tweet_messages_path(@tweet.id), local: true do |f| %>
+        <%= f.text_field :message_text, class: "comment-text" %> 
+        <div class="message-text"id='messages'>
+          <% @messages.reverse_each do |message| %>
+            <p><%= message.message_text %></p>
+            <p>(<%= message.user.nickname %>)</p>
+          <% end %>
+            <button>投稿</button>
+            <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+            <span>コメントする<span>
+          <% end %>
+        </div>           
+        <%= image_tag "image0-2.jpeg", class:"comment-image"%>
+    </div>
+  
+
+ <%= link_to "この子の紹介ページへ", animal_path(@animal.id) ,class:"item-red-btn"%>
+    <% if current_user.id == @tweet.user_id %>
+      <%= link_to "削除", animal_tweet_path(@tweet.id), method: :delete, class:"item-destroy" %>
+    <% end %>
+
+      
+      <%= link_to "ツイート一覧画面に進む", "#" ,class:"item-red-btn"%>
+     
+</div>
+     
+
+<%= render "shared/second-footer"%>
