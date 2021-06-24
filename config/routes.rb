@@ -8,11 +8,13 @@ Rails.application.routes.draw do
   resources :animals do
     resources :tweets, only: [:index, :create, :show, :destroy]
     resources :likes, only: [:create, :destroy]
+    resources :comments, only: [:create, :new]
   end
   
   resources :tweets, only: [:index, :create, :show, :destroy] do
     resources :messages, only: [:new, :create]
   end
+
 
   resources :users, only: :index
 

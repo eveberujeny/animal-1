@@ -49,20 +49,28 @@
         <%= f.text_field :message_text, class: "comment-text" %> 
         <div class="message-text"id='messages'>
           <% @messages.reverse_each do |message| %>
-            <p><%= message.message_text %></p>
-            <p>(<%= message.user.nickname %>)</p>
+          <% if message.user_id == current_user.id %>
+            <div class="current-user-message">
+            <p><%= message.message_text %>(<%= message.user.nickname %>)</p>
+            </div>
+            <% else %>
+            <div class="current-user-messages">
+            <p><%= message.message_text %>(<%= message.user.nickname %>)</p>
+            </div>
+          <% end %>
           <% end %>
             <button>投稿</button>
             <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
             <span>コメントする<span>
           <% end %>
-        </div>           
+          </div>     
+              
         <%= image_tag "image0-2.jpeg", class:"comment-image"%>
     </div>
   
 
  <%= link_to "この子の紹介ページへ", animal_path(@animal.id) ,class:"item-red-btn"%>
-    <% if current_user.id == @tweet.user_id %>
+    <% if user_signed_in? && current_user.id == @tweet.user_id %>
       <%= link_to "削除", animal_tweet_path(@tweet.id), method: :delete, class:"item-destroy" %>
     <% end %>
 

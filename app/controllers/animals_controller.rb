@@ -23,9 +23,8 @@ class AnimalsController < ApplicationController
   def show
     @animal = Animal.find(params[:id])
     @tweet = @animal.tweets.includes(:user)
-
-    @animals = Animal.includes(:user)
-
+    @comment = Comment.new
+    @comments = @animal.comments.order(created_at: :desc) #コメントを作成順に取ってくる
   end
 
   def edit
@@ -53,7 +52,7 @@ class AnimalsController < ApplicationController
 
   private
   def animal_params
-    params.require(:animal).permit(:animal_name, :animal_type_id, :animal_pedigree, :birthday, :introduction, :image, :likes_count).merge(user_id: current_user.id)
+    params.require(:animal).permit(:animal_name, :animal_type_id, :animal_pedigree, :birthday, :introduction, :image).merge(user_id: current_user.id)
   end
 
   def search_animal

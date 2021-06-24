@@ -1,6 +1,5 @@
 <%= render "shared/second-header" %>
 
- <%# 商品の概要 %>
 <div class= animals>
   <div class="item-show">
     <div class="item-box">
@@ -25,32 +24,47 @@
       </div>
 
       <div class="detail-items-5">ペットの紹介</div>
-            <div class="detail-items-5-1"><%= @animal.introduction %></div>
+         <div class="detail-items-5-1">
+           <%= @animal.introduction %>
+         </div>
 
-             <div id="like-<%= @animal.id %>">   
-    <%= render 'likes/like', { animal: @animal} %>
-    </div>
-
+         <div id="like-<%= @animal.id %>">   
+           <%= render 'likes/like', { animal: @animal} %>
+         </div>
       </div> 
 
 
     
 
     <div class="comment-box">
-    <%= image_tag "image100.png", class:"comment-image"%>
-      <form>
-        <textarea class="comment-text"></textarea>
-       
-        <button type="submit" class="comment-btn">
-          <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
-          <span>コメントする<span>
-        </button>
-      </form>
-      <%= image_tag "image0-2.jpeg", class:"comment-image"%>
+    
+      <%= image_tag "image100.png", class:"comment-image"%>
+      
+      <%= form_with model: @comment, url: animal_comments_path(@animal.id), local: true do |f| %>
+        <%= f.text_field :comment_text, class: "comment-text" %> 
+        <div class="message-text"id='comments'>
+          <% @comments.reverse_each do |comment| %>
+          <% if comment.user_id == current_user.id %>
+            <div class="current-user-message">
+            <p><%= image_tag comment.animal.image, size: '40x40' %><%= comment.comment_text %>(<%= comment.user.nickname %>)</p>
+            </div>
+            <% else %>
+            <div class="current-user-messages">
+            <p><%= comment.comment_text %>(<%= comment.user.nickname %>)<%= image_tag comment.animal.image, size: '40x40' %></p>
+            </div>
+          <% end %>
+          <% end %>
+            <button>投稿</button>
+            <%= image_tag "comment.png" ,class:"comment-flag-icon" ,width:"20",height:"25"%>
+            <span>コメントする<span>
+          <% end %>
+          </div>     
+              
+        <%= image_tag "image0-2.jpeg", class:"comment-image"%>
     </div>
 
   <div class='animal-red-btn'>
-    <% if current_user.id == @animal.user_id %>
+    <% if user_signed_in? && current_user.id == @animal.user_id %>
       <%= link_to "ペット情報の編集", edit_animal_path(@animal.id), method: :get, class: "item-red-btn" %>
       <p class="or-text">or</p>
       <%= link_to "削除", animal_path(@animal.id), method: :delete, class:"item-destroy" %>
@@ -90,7 +104,7 @@
       </div>
 <% end %>
 
-      <% if current_user.id == @animal.user_id %>
+      <% if user_signed_in? && current_user.id == @animal.user_id %>
         <%= link_to animal_tweets_path(@animal.id), class: 'purchase-btn' do %>
           <span class='purchase-btn-text'>投稿する</span>
         <% end %>

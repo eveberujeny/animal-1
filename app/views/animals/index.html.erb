@@ -143,11 +143,17 @@
         <% if animal.image.content_type.include?('image/')%>
           <%= image_tag animal.image, class:"list-pict" %>
         <% elsif animal.image.content_type.include?('video/') %>
-          <%= video_tag url_for(animal.image), controls: true, class:"list-pict" %>
+          <%= video_tag rails_blob_path(animal.image), controls: true, class:"list-pict" %>
         <% end %>
         <h3 class='feature-list-text'>
           <%= animal.animal_name %>
         </h3>
+        <p class='feature-list-description'>
+          <%= animal.animal_type.name %>
+        </p>
+        <p class='feature-list-description'>
+          <%= animal.animal_pedigree %>
+        </p>      
     </ul>
     <% end %>
     <% end %>
@@ -156,8 +162,10 @@
     
 </div>
  
-<%= link_to new_animal_path, class: 'purchase-btn' do %>
-  <span class='purchase-btn-text'>登録する</span>
+<% if user_signed_in? %>
+  <%= link_to new_animal_path, class: 'purchase-btn' do %>
+    <span class='purchase-btn-text'>登録する</span>
+  <% end %>
 <% end %>
 
 
