@@ -1,7 +1,7 @@
 Rails.application.configure do
   ActionCable.server.config.disable_request_forgery_protection = true
-  config.action_cable.url = "wss://animal-1-35675.herokuapp.com/cable"
-  config.action_cable.allowed_request_origins = ['https://animal-1-35675.herokuapp.com', 'http://animal-1-35675.herokuapp.com']
+  config.action_cable.url = "wss://Herokuanimal-1-35675.herokuapp.com/cable"
+  config.action_cable.allowed_request_origins = ['https://Herokuanimal-1-35675.herokuapp.com', 'http://Herokuanimal-1-35675.herokuapp.com']
   # Settings specified here will take precedence over those in config/application.rb.
 
   # Code is not reloaded between requests.
