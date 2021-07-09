@@ -75,43 +75,46 @@
 
       
 
-<% unless @tweet.blank? %>
-<p class="animal-tweet-name">
-<% @tweet.last(1).each do |tweet| %>
-      <%= tweet.animal.animal_name %><p>のツイート一覧</p>
-      </p>
+      <% unless @tweet.blank? %>
+      <p class="animal-tweet-name">
+      <% @tweet.last(1).each do |tweet| %>
+            <%= tweet.animal.animal_name %><p>のツイート一覧</p>
+            </p>
+            <% end %>
+          <div class='feature-contents'>
+            <div class='feature-title'>
+            <% @tweet.each do |tweet| %>
+            <%= link_to animal_tweet_path(tweet.id) do %>
+            <ul class='feature-lists'>
+              <li class='list'>
+              <% if tweet.food_image.content_type.include?('image/') %>
+                <%= image_tag tweet.food_image, class:"list-pict" %>
+              <% elsif tweet.food_image.content_type.include?('video/') %>
+                <%= video_tag url_for(tweet.food_image), controls: true, class: 'list-pict' %>
+              <% end %>
+                <h3 class='feature-list-text'>
+                  <%= tweet.animal.animal_name %>
+                </h3>
+                <p class='feature-list-description'>
+                  <%= tweet.title %>
+                </p>
+            </ul>
+            <% end %>
+            <% end %>    
+            </div>
+          </div> 
       <% end %>
-  <div class='feature-contents'>
-      <div class='feature-title'>
-      <% @tweet.each do |tweet| %>
-      <%= link_to animal_tweet_path(tweet.id) do %>
-      <ul class='feature-lists'>
-        <li class='list'>
-        <% if tweet.food_image.content_type.include?('image/') %>
-          <%= image_tag tweet.food_image, class:"list-pict" %>
-        <% elsif tweet.food_image.content_type.include?('video/') %>
-          <%= video_tag url_for(tweet.food_image), controls: true, class: 'list-pict' %>
+        
+        <% if user_signed_in? && current_user.id == @animal.user_id %>
+          <%= link_to animal_tweets_path(@animal.id), class: 'purchase-btn' do %>
+            <span class='purchase-btn-text'>投稿する</span>
+          <% end %>
         <% end %>
-          <h3 class='feature-list-text'>
-            <%= tweet.animal.animal_name %>
-          </h3>
-          <p class='feature-list-description'>
-            <%= tweet.title %>
-          </p>
-      </ul>
-      <% end %>
-      <% end %>    
-      </div>
-<% end %>
 
-      <% if user_signed_in? && current_user.id == @animal.user_id %>
-        <%= link_to animal_tweets_path(@animal.id), class: 'purchase-btn' do %>
-          <span class='purchase-btn-text'>投稿する</span>
-        <% end %>
-    <% end %>
-
-  </div>
+ 
 
   
 
 <%= render "shared/second-footer" %>
+
+<% breadcrumb :animals %>
